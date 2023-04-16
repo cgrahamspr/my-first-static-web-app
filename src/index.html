@@ -44,6 +44,9 @@
         });
         const result = await response.json();
         console.table(result.data.people.items);
+        result.data.people.items.array.forEach(item => {
+          console.log(item);
+        });
     }
 
 
