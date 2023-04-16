@@ -21,7 +21,11 @@
       <button id="create" onclick="create()">Create</button>
       <button id="delete" onclick="del()">Delete</button>
   </div>
+  <div id="persons">
+    <ul id="personsList">
 
+    </ul>
+  </div>
   <script>
 
     async function list() {
@@ -44,9 +48,17 @@
         });
         const result = await response.json();
         console.table(result.data.people.items);
-        result.data.people.items.array.forEach(item => {
-          console.log(item);
-        });
+        var personsList = document.getElementById("personsList")
+        for(i=0; i < result.data.people.items.length; i++)
+        {
+          //console.log(result.data.people.items[i]);
+          var p = result.data.people.items[i];
+         
+          var liPerson = document.createElement("li");
+         liPerson.innerText = `ID: ${p.id} - Name: ${p.Name}`;
+         personsList.appendChild(liPerson);
+        }
+
     }
 
 
